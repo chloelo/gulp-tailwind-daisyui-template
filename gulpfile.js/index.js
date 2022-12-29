@@ -1,6 +1,5 @@
 const gulp = require('gulp');
 const $ = require('gulp-load-plugins')({ lazy: false });
-const autoprefixer = require('autoprefixer');
 const minimist = require('minimist');
 const browserSync = require('browser-sync').create();
 const { envOptions } = require('./envOptions');
@@ -11,12 +10,12 @@ console.log(`Current mode：${options.env}`);
 
 function copyFile() {
   return gulp.src(envOptions.copyFile.src)
-  .pipe(gulp.dest(envOptions.copyFile.path))
-  .pipe(
-    browserSync.reload({
-      stream: true,
-    }),
-  );
+    .pipe(gulp.dest(envOptions.copyFile.path))
+    .pipe(
+      browserSync.reload({
+        stream: true,
+      }),
+    );
 }
 
 function layoutHTML() {
@@ -35,13 +34,17 @@ function layoutHTML() {
       }),
     );
 }
-function postcss() {
+function sass() {
+  const sass = require('gulp-sass');
   const postcss = require('gulp-postcss')
   return gulp
     .src(envOptions.style.src)
+    .pipe(sass().on("error", sass.logError))
     .pipe(postcss())
     .pipe(gulp.dest(envOptions.style.path));
+
 }
+
 
 function babel() {
   return gulp.src(envOptions.javascript.src)
@@ -77,9 +80,9 @@ function browser() {
 
 function clean() {
   return gulp.src(envOptions.clean.src, {
-      read: false,
-      allowEmpty: true,
-    })
+    read: false,
+    allowEmpty: true,
+  })
     .pipe($.clean());
 }
 
@@ -89,16 +92,17 @@ function deploy() {
 }
 
 function watch() {
-  gulp.watch(envOptions.html.src, gulp.series(layoutHTML, postcss));
-  gulp.watch(envOptions.html.ejsSrc, gulp.series(layoutHTML, postcss));
+  gulp.watch(envOptions.html.src, gulp.series(layoutHTML, sass));
+  gulp.watch(envOptions.html.ejsSrc, gulp.series(layoutHTML, sass));
   gulp.watch(envOptions.javascript.src, gulp.series(babel));
   gulp.watch(envOptions.img.src, gulp.series(copyFile));
-  gulp.watch(envOptions.style.src, gulp.series(postcss));
+  gulp.watch(envOptions.style.src, gulp.series(sass));
+  // gulp.watch(envOptions.style.src, gulp.series(postcss));
 }
 
 exports.deploy = deploy;
 
 exports.clean = clean;
 
-exports.build = gulp.series(clean, copyFile, layoutHTML, postcss, babel, vendorsJs);
-exports.default = gulp.series(clean, copyFile, layoutHTML, postcss, babel, vendorsJs, gulp.parallel(browser, watch));
+exports.build = gulp.series(clean, copyFile, layoutHTML, sass, babel, vendorsJs);
+exports.default = gulp.series(clean, copyFile, layoutHTML, sass, babel, vendorsJs, gulp.parallel(browser, watch));

@@ -29,7 +29,7 @@ Tailwind 版本為 3.0.24
 
 ## 資料夾結構
 
-- App # 原始碼
+- src # 原始碼
   - assets # 靜態資源放置處
     - images # 圖片放置處
     - js # JavaScript 放置處

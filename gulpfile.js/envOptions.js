@@ -1,4 +1,4 @@
-const srcPath = './app';
+const srcPath = './src';
 const distPath = './dist';
 const nodePath = './node_modules';
 
@@ -11,7 +11,7 @@ let envOptions = {
     src: [
       `${srcPath}/**/*`,
       `!${srcPath}/assets/js/**/*.js`,
-      `!${srcPath}/assets/style/**/*.css`,
+      `!${srcPath}/assets/style/**/*.scss`,
       `!${srcPath}/**/*.ejs`,
       `!${srcPath}/**/*.html`,
     ],
@@ -27,8 +27,11 @@ let envOptions = {
     path: distPath,
   },
   style: {
+    // scss: [
+    //   `${srcPath}/assets/scss/**/*.scss`,
+    // ],
     src: [
-      `${srcPath}/assets/style/**/*.css`,
+      `${srcPath}/assets/scss/**/*.scss`,
     ],
     path: `${distPath}/assets/style`,
   },
