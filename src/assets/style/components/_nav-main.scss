@@ -1,0 +1,7 @@
+.main-nav {
+  &__item {
+    &--active {
+      @apply bg-white;
+    }
+  }
+}

@@ -1,5 +1,7 @@
-console.log('Hello!');
-
-$(document).ready(() => {
-  console.log('HesSchool Hello!');
-});
+// $(function () {
+//   $( "#clickme" ).click(function() {
+//     $( "#book" ).slideToggle( "slow", function() {
+//       // Animation complete.
+//     });
+//   });
+// });

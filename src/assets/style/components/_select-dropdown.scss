@@ -1,0 +1,156 @@
+.dropdown-wrapper {
+  @apply p-4 bg-primary-500 text-white;
+  .select-dropdown {
+    &__button {
+      @apply flex items-center justify-between;
+      padding: 10px;
+      background-color: #fff;
+      color: #616161;
+      border: 1px solid #cecece;
+      border-radius: 3px;
+      cursor: pointer;
+      width: 210px;
+      &::focus {
+        outline: none;
+      }
+    }
+    &__list {
+      @apply bg-secondary text-primary-500 p-2 absolute;
+      left: 0;
+      right: 0;
+      z-index: 20;
+      max-height: 300px;
+      opacity: 0;
+      list-style-type: none;
+      display: block;
+      transform-origin: top left;
+      transform: scale(1, 0);
+      transition: all ease-in-out 0.3s;
+      &.active {
+        opacity: 1;
+        pointer-events: auto;
+        transform: scale(1, 1);
+      }
+    }
+  }
+  /* The radio-wrapper */
+  .radio-wrapper {
+    @apply block relative cursor-pointer select-none text-xl mb-3 pl-7;
+  }
+
+  /* Hide the browser's default radio button */
+  .radio-wrapper input {
+    @apply absolute cursor-pointer opacity-0;
+    left: 3px;
+    top: 6px;
+    // @apply hidden;
+  }
+
+  /* Create a custom radio button */
+  .check-mark {
+    @apply absolute left-0 rounded-full bg-white top-1/2 -translate-y-1/2;
+    height: 20px;
+    width: 20px;
+    border: 4px solid #555;
+  }
+
+  /* On mouse-over, add a grey background color */
+  /* .radio-wrapper:hover input ~ .check-mark {
+    background-color: #ccc;
+  } */
+
+  /* When the radio button is checked, add a blue background */
+  .radio-wrapper input:checked ~ .check-mark {
+    background-color: #555;
+  }
+
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  .check-mark:after {
+    @apply hidden absolute;
+    content: "";
+  }
+
+  /* Show the indicator (dot/circle) when checked */
+  .radio-wrapper input:checked ~ .check-mark:after {
+    @apply block;
+  }
+
+  /* Style the indicator (dot/circle) */
+  .radio-wrapper .check-mark:after {
+    @apply rounded-full w-2 h-2;
+    top: 9px;
+    left: 9px;
+    /* background: white; */
+  }
+}
+
+// 客製下拉
+/*the container must be positioned relative:*/
+.custom-select {
+  @apply relative;
+  select {
+    @apply hidden; /*hide original SELECT element:*/
+  }
+  &.dark {
+    .select-items {
+      @apply bg-primary-500 text-white;
+      div {
+        &::before {
+          @apply border-white bg-primary-500;
+        }
+        &.same-as-selected {
+          &::before {
+            @apply bg-white;
+          }
+        }
+      }
+    }
+  }
+
+  .select-selected {
+    @apply bg-white text-primary-500 cursor-pointer rounded select-none py-2 px-4;
+    border: 1px solid #eef1f4;
+    &::after {
+      // style the arrow inside the select element
+      @apply absolute w-0 h-0 border-primary-600 border-solid top-4 right-2.5 p-1 inline-block;
+      content: "";
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+    }
+
+    // point the arrow upwards when the select box is open (active)
+    &.select-arrow-active {
+      &::after {
+        top: 20px;
+        transform: rotate(-135deg);
+        -webkit-transform: rotate(-135deg);
+      }
+    }
+  }
+  .select-items {
+    // style items (options)
+    @apply bg-white absolute left-0 right-0 z-30 top-full;
+    div {
+      @apply relative py-2 pl-12 pr-4 cursor-pointer select-none;
+      border: 1px solid transparent;
+      border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+      &::before {
+        @apply bg-white top-1/2 -translate-y-1/2 absolute left-4 inline-block rounded-full;
+        content: "";
+        height: 20px;
+        width: 20px;
+        border: 3px solid #555;
+      }
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+      &.same-as-selected {
+        background-color: rgba(0, 0, 0, 0.1);
+        &::before {
+          background-color: #555;
+        }
+      }
+    }
+  }
+}
