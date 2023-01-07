@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title><%- title %></title>
+    <link rel="stylesheet" href="./assets/style/all.css" />
+    <!-- <script src="./assets/js/vendors.js"></script> -->
+    <script
+      src="https://kit.fontawesome.com/b3b219037e.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- <script src="./assets/js/all.js"></script> -->
+  </head>
+
+  <body>
+    <!-- <header class="header">
+    這是 header
+  </header> -->
+
+    <%- contents %>
+    <nav class="main-nav bg-slate-300 fixed bottom-0 left-0 right-0">
+      <ul class="flex justify-around text-sm">
+        <li class="flex-1">
+          <a
+            href="#"
+            class="main-nav__item flex flex-col justify-center items-center px-1 py-3 h-full"
+          >
+            <i class="fa-solid fa-house"></i>
+            <span class="inline-block mt-1">用電分析</span>
+          </a>
+        </li>
+        <li class="flex-1">
+          <a
+            href="#"
+            class="main-nav__item flex flex-col justify-center items-center px-1 py-3 h-full"
+          >
+            <i class="fa-solid fa-user"></i>
+            <span class="inline-block mt-1">用水分析</span>
+          </a>
+        </li>
+        <li class="flex-1">
+          <a
+            href="index.html"
+            class="main-nav__item--active flex flex-col justify-center items-center px-1 py-3 h-full"
+          >
+            <i class="fa-brands fa-github"></i>
+            <span class="inline-block mt-1">首頁</span>
+          </a>
+        </li>
+        <li class="flex-1">
+          <a
+            href="#"
+            class="main-nav__item flex flex-col justify-center items-center px-1 py-3 h-full"
+          >
+            <i class="fa-solid fa-music"></i>
+            <span class="inline-block mt-1">設備列表</span>
+          </a>
+        </li>
+        <li class="flex-1">
+          <a
+            href="#"
+            class="main-nav__item flex flex-col justify-center items-center px-1 py-3 h-full"
+          >
+            <i class="fa-solid fa-heart"></i>
+            <span class="inline-block mt-1">歷年用電</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <!-- <footer class="footer">
+    footer
+  </footer> -->
+  </body>
+</html>

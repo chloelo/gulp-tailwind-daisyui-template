@@ -1,0 +1,7 @@
+body {
+  @apply h-screen;
+  transition: background-color 0.2s;
+}
+.fake-radio{
+  @apply w-5 h-5;
+}

@@ -1,0 +1,46 @@
+---
+title: 圖表
+layout: ./src/layout.ejs
+engine: ejs
+current: chart
+---
+
+<!-- The menu here -->
+<div id="side-menu"
+  class="fixed top-0 left-[-250px] w-[240px] h-screen z-50 bg-gray-700 p-5
+flex flex-col space-y-5 text-white duration-300">
+  <a href="javascript:void(0)"
+    class="text-right text-4xl"
+    onclick="closeMenu()">&times;</a>
+  <a class="hover:text-amber-500"
+    href="#">Home</a>
+  <a class="hover:text-amber-500"
+    href="#">About KindaCode.com</a>
+  <a class="hover:text-amber-500"
+    href="#">Contact Us</a>
+  <a class="hover:text-amber-500"
+    href="#">Terms of Service</a>
+  <a class="hover:text-amber-500"
+    href="#">Privacy Policy</a>
+</div>
+
+<main class="p-5">
+  <!-- This is used to open the menu -->
+  <span class="cursor-pointer text-4xl"
+    onclick="openMenu()">&#9776; Open Menu</span>
+  <h1 class="mt-5 text-xl font-light italic">Side Menu Example - KindaCode.com</h1>
+</main>
+
+<!-- Javascript code -->
+<script>
+  var sideMenu = document.getElementById('side-menu');
+  function openMenu() {
+    sideMenu.classList.remove('left-[-250px]');
+    sideMenu.classList.add('left-0');
+  }
+
+  function closeMenu() {
+    sideMenu.classList.remove('left-0');
+    sideMenu.classList.add('left-[-250px]');
+  }
+</script>

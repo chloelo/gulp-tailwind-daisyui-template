@@ -1,0 +1,23 @@
+.side-nav {
+  @apply w-0 h-full fixed top-0 left-0 bg-white overflow-x-hidden;
+  z-index: 1;
+  transition: width 0.5s;
+  padding-top: 60px;
+  &__title,
+  &__link {
+    @apply whitespace-nowrap block no-underline;
+    padding: 8px 8px 8px 32px;
+    font-size: 25px;
+    color: #818181;
+    transition: width 0.3s;
+  }
+}
+
+body.modal-open {
+  @apply absolute top-0 right-0 bottom-0 left-0 w-full h-full;
+  z-index: 9;
+  background-color: rgba(0, 0, 0, 0.2);
+  .side-nav {
+    width: 75%;
+  }
+}

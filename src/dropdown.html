@@ -1,0 +1,76 @@
+---
+title: 下拉選單
+layout: ./src/layout.ejs
+engine: ejs
+current: dropdown
+---
+
+<div class="dropdown-wrapper">
+  <p class="dropdown-heading">設備類別</p>
+  <div class="select-dropdown">
+    <button role="button" data-value="" class="select-dropdown__button">
+      <span class="inline-block mr-2 selectVal">SELECT ITEMS </span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-4 h-4"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+        />
+      </svg>
+    </button>
+    <ul class="select-dropdown__list">
+      <li class="select-dropdown__list-item">
+        <label class="radio-wrapper" data-value="1">
+          <span class="text">One</span>
+          <input type="radio" checked="checked" name="radio" />
+          <span class="check-mark"></span>
+        </label>
+      </li>
+      <li class="select-dropdown__list-item">
+        <label class="radio-wrapper" data-value="2">
+          <span class="text">Two</span>
+          <input type="radio" name="radio" />
+          <span class="check-mark"></span>
+        </label>
+      </li>
+      <li class="select-dropdown__list-item">
+        <label class="radio-wrapper" data-value="3"
+          ><span class="text">Three</span>
+          <input type="radio" name="radio" />
+          <span class="check-mark"></span>
+        </label>
+      </li>
+      <li class="select-dropdown__list-item">
+        <label class="radio-wrapper" data-value="4">Four
+          <span class="text">Four</span>
+          <input type="radio" name="radio" />
+          <span class="check-mark"></span>
+        </label>
+      </li>
+    </ul>
+  </div>
+</div>
+<script>
+  const btn = document.querySelector(".select-dropdown__button");
+  const list = document.querySelector(".select-dropdown__list");
+  const listItems = [...document.querySelectorAll(".radio-wrapper")];
+  btn.addEventListener("click", (e) => {
+    list.classList.toggle("active");
+  });
+  listItems.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      console.log(e.target);
+      let selectVal = e.target.dataset.value;
+      document.querySelector(".selectVal").innerHTML = selectVal;
+    });
+  });
+</script>
