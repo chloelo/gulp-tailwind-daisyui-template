@@ -1,16 +1,17 @@
-const gulp = require('gulp');
+const { src, dest, watch, series, parallel } = require('gulp');
 const $ = require('gulp-load-plugins')({ lazy: false });
 const minimist = require('minimist');
 const browserSync = require('browser-sync').create();
 const { envOptions } = require('./envOptions');
+const sass = require('gulp-sass')(require('sass'));
 
 let options = minimist(process.argv.slice(2), envOptions);
 //現在開發狀態
 console.log(`Current mode：${options.env}`);
 
 function copyFile() {
-  return gulp.src(envOptions.copyFile.src)
-    .pipe(gulp.dest(envOptions.copyFile.path))
+  return src(envOptions.copyFile.src)
+    .pipe(dest(envOptions.copyFile.path))
     .pipe(
       browserSync.reload({
         stream: true,
@@ -19,7 +20,7 @@ function copyFile() {
 }
 
 function layoutHTML() {
-  return gulp.src(envOptions.html.src)
+  return src(envOptions.html.src)
     .pipe($.plumber())
     .pipe($.frontMatter())
     .pipe(
@@ -27,34 +28,32 @@ function layoutHTML() {
         return file.frontMatter;
       })
     )
-    .pipe(gulp.dest(envOptions.html.path))
+    .pipe(dest(envOptions.html.path))
     .pipe(
       browserSync.reload({
         stream: true,
       }),
     );
 }
-function sass() {
-  const sass = require('gulp-sass');
+function buildStyles() {
   const postcss = require('gulp-postcss')
-  return gulp
-    .src(envOptions.style.src)
+  return src(envOptions.style.src)
     .pipe(sass().on("error", sass.logError))
     .pipe(postcss())
-    .pipe(gulp.dest(envOptions.style.path));
+    .pipe(dest(envOptions.style.path));
 
 }
 
 
 function babel() {
-  return gulp.src(envOptions.javascript.src)
-    .pipe($.sourcemaps.init())
+  return src(envOptions.javascript.src)
+    // .pipe($.sourcemaps.init())
     .pipe($.babel({
       presets: ['@babel/env'],
     }))
     .pipe($.concat(envOptions.javascript.concat))
-    .pipe($.sourcemaps.write('.'))
-    .pipe(gulp.dest(envOptions.javascript.path))
+    // .pipe($.sourcemaps.write('.'))
+    .pipe(dest(envOptions.javascript.path))
     .pipe(
       browserSync.reload({
         stream: true,
@@ -63,9 +62,9 @@ function babel() {
 }
 
 function vendorsJs() {
-  return gulp.src(envOptions.vendors.src)
+  return src(envOptions.vendors.src)
     .pipe($.concat(envOptions.vendors.concat))
-    .pipe(gulp.dest(envOptions.vendors.path));
+    .pipe(dest(envOptions.vendors.path));
 }
 
 
@@ -79,7 +78,7 @@ function browser() {
 }
 
 function clean() {
-  return gulp.src(envOptions.clean.src, {
+  return src(envOptions.clean.src, {
     read: false,
     allowEmpty: true,
   })
@@ -87,22 +86,21 @@ function clean() {
 }
 
 function deploy() {
-  return gulp.src(envOptions.deploySrc)
+  return src(envOptions.deploySrc)
     .pipe($.ghPages());
 }
 
-function watch() {
-  gulp.watch(envOptions.html.src, gulp.series(layoutHTML, sass));
-  gulp.watch(envOptions.html.ejsSrc, gulp.series(layoutHTML, sass));
-  gulp.watch(envOptions.javascript.src, gulp.series(babel));
-  gulp.watch(envOptions.img.src, gulp.series(copyFile));
-  gulp.watch(envOptions.style.src, gulp.series(sass));
-  // gulp.watch(envOptions.style.src, gulp.series(postcss));
+function watchTasks() {
+  watch(envOptions.html.src, series(layoutHTML, buildStyles));
+  watch(envOptions.html.ejsSrc, series(layoutHTML, buildStyles));
+  watch(envOptions.javascript.src, series(babel));
+  watch(envOptions.img.src, series(copyFile));
+  watch(envOptions.style.src, series(buildStyles));
 }
 
 exports.deploy = deploy;
 
 exports.clean = clean;
 
-exports.build = gulp.series(clean, copyFile, layoutHTML, sass, babel, vendorsJs);
-exports.default = gulp.series(clean, copyFile, layoutHTML, sass, babel, vendorsJs, gulp.parallel(browser, watch));
+exports.build = series(clean, copyFile, layoutHTML, buildStyles, babel, vendorsJs);
+exports.default = series(clean, copyFile, layoutHTML, buildStyles, babel, vendorsJs, parallel(browser, watchTasks));
