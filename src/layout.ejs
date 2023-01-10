@@ -11,7 +11,7 @@
       src="https://kit.fontawesome.com/b3b219037e.js"
       crossorigin="anonymous"
     ></script>
-    <!-- <script src="./assets/js/all.js"></script> -->
+    
   </head>
 
   <body>
@@ -20,12 +20,12 @@
   </header> -->
 
     <%- contents %>
-    <nav class="main-nav bg-slate-300 fixed bottom-0 left-0 right-0">
+    <nav class="main-nav bg-secondary fixed bottom-0 left-0 right-0 text-primary">
       <ul class="flex justify-around text-sm">
         <li class="flex-1">
           <a
-            href="#"
-            class="main-nav__item flex flex-col justify-center items-center px-1 py-3 h-full"
+            href="custom-select.html"
+            class="main-nav__item flex flex-col justify-center items-center px-1 py-3 h-full <% if (current === 'nav-link01') {%>main-nav__item--active<%} %>"
           >
             <i class="fa-solid fa-house"></i>
             <span class="inline-block mt-1">用電分析</span>
@@ -33,8 +33,8 @@
         </li>
         <li class="flex-1">
           <a
-            href="#"
-            class="main-nav__item flex flex-col justify-center items-center px-1 py-3 h-full"
+            href="./table.html"
+            class="main-nav__item flex flex-col justify-center items-center px-1 py-3 h-full <% if (current === 'nav-link02') {%>main-nav__item--active<%} %>"
           >
             <i class="fa-solid fa-user"></i>
             <span class="inline-block mt-1">用水分析</span>
@@ -43,7 +43,7 @@
         <li class="flex-1">
           <a
             href="index.html"
-            class="main-nav__item--active flex flex-col justify-center items-center px-1 py-3 h-full"
+            class="main-nav__item flex flex-col justify-center items-center px-1 py-3 h-full <% if (current === 'index') {%>main-nav__item--active<%} %>"
           >
             <i class="fa-brands fa-github"></i>
             <span class="inline-block mt-1">首頁</span>
@@ -51,8 +51,8 @@
         </li>
         <li class="flex-1">
           <a
-            href="#"
-            class="main-nav__item flex flex-col justify-center items-center px-1 py-3 h-full"
+            href="sidemenu.html"
+            class="main-nav__item flex flex-col justify-center items-center px-1 py-3 h-full <% if (current === 'nav-link04') {%>main-nav__item--active<%} %>"
           >
             <i class="fa-solid fa-music"></i>
             <span class="inline-block mt-1">設備列表</span>
@@ -61,7 +61,7 @@
         <li class="flex-1">
           <a
             href="#"
-            class="main-nav__item flex flex-col justify-center items-center px-1 py-3 h-full"
+            class="main-nav__item flex flex-col justify-center items-center px-1 py-3 h-full <% if (current === 'nav-link05') {%>main-nav__item--active<%} %>"
           >
             <i class="fa-solid fa-heart"></i>
             <span class="inline-block mt-1">歷年用電</span>
@@ -72,5 +72,6 @@
     <!-- <footer class="footer">
     footer
   </footer> -->
+  <script src="./assets/js/all.js"></script>
   </body>
 </html>
