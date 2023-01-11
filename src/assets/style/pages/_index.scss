@@ -12,12 +12,22 @@
     transition: width 0.3s;
   }
 }
-
-body.modal-open {
-  @apply absolute top-0 right-0 bottom-0 left-0 w-full h-full;
-  z-index: 9;
-  background-color: rgba(0, 0, 0, 0.2);
-  .side-nav {
-    width: 75%;
+body {
+  overflow: auto;
+  &.modal-open {
+    @apply left-0 right-0 bg-purple-200;
+    overflow: hidden;
+    .side-nav {
+      width: 75%;
+    }
+    .overlay {
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.2);
+    }
   }
 }

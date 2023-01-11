@@ -1,5 +1,6 @@
 .main-nav {
   &__item {
+    @apply flex flex-col justify-center items-center px-1 py-3 h-full text-center;
     &--active {
       @apply bg-white;
     }

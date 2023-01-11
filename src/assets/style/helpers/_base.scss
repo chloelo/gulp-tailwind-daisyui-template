@@ -1,6 +1,7 @@
 body {
-  @apply pb-20 h-screen;
+  // @apply pb-20 h-screen;
   transition: background-color 0.2s;
+  overflow-y: auto;
 }
 .fake-radio {
   @apply w-5 h-5;
