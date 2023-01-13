@@ -14,8 +14,8 @@ function cb() {
       customSelects[i].appendChild(divSelected);
       /*for each element, create a new DIV that will contain the option list:*/
       const divOptionsWrap = document.createElement("DIV");
-      divOptionsWrap.setAttribute("class", "select-items hidden");
-      for (let j = 0; j < optionsArr.length; j++) {
+      divOptionsWrap.setAttribute("class", "select-items hide");
+      for (let j = 1; j < optionsArr.length; j++) {
         /*for each option in the original select element,
         create a new DIV that will act as an option item:*/
         const divOption = document.createElement("DIV");
@@ -49,7 +49,7 @@ function cb() {
           and open/close the current select box:*/
         e.stopPropagation();
         closeAllSelect(this);
-        this.nextSibling.classList.toggle("hidden");
+        this.nextSibling.classList.toggle("hide");
         this.classList.toggle("select-arrow-active");
       });
     }
@@ -69,7 +69,7 @@ function cb() {
     }
     for (let j = 0; j < selectItems.length; j++) {
       if (arrNo.indexOf(j)) {
-        selectItems[j].classList.add("hidden");
+        selectItems[j].classList.add("hide");
       }
     }
   }
@@ -77,7 +77,7 @@ function cb() {
   /*if the user clicks anywhere outside the select box,
   then close all select boxes:*/
   document.addEventListener("click", function () {
-    const hiddenSelectItems = [...document.getElementsByClassName("select-items hidden")];
+    const hiddenSelectItems = [...document.getElementsByClassName("select-items hide")];
     const selectItems = [...document.getElementsByClassName("select-items")];
     // 當隱藏的下拉與所有下拉數量不同，表示有展開的下拉，這時再把它關掉
     if (hiddenSelectItems.length !== selectItems.length) {

@@ -6,16 +6,4 @@
     }
   }
 }
-.modal {
-  z-index: 30;
-  overflow-y: auto;
-}
-.modal-box {
-  @apply rounded-none p-4;
-  overflow: visible;
-  // padding-bottom: 50%;
-  // overflow-y: hidden;
-  .select-items {
-    z-index: 40;
-  }
-}
+

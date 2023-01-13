@@ -43,8 +43,10 @@ let envOptions = {
   vendors: {
     src: [
       // D:\test\tailwind-gulp\node_modules\body-scroll-lock\lib\bodyScrollLock.js
-      `${nodePath}/jquery/dist/**/jquery.min.js`,
+      // `${nodePath}/jquery/dist/**/jquery.min.js`,
       // `${nodePath}/body-scroll-lock/lib/bodyScrollLock.min.js`,
+      // D:\test\tailwind-gulp\node_modules\tw-elements\dist\js\index.min.js
+      `${nodePath}/tw-elements/dist/js/index.min.js`
     ],
     concat: 'vendors.js',
     path: `${distPath}/assets/js`,

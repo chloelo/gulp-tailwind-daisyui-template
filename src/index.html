@@ -5,22 +5,34 @@ engine: ejs
 current: index
 ---
 
-<div class="overlay"></div>
-<nav id="sideNav" class="side-nav">
-  <h2 class="side-nav__title">手刻 side bar</h2>
-  <a href="./sidemenu.html" class="side-nav__link">關閉推播</a>
-  <a href="./chart.html" class="side-nav__link">登出</a>
-</nav>
 <div
-  class="fixed top-0 left-0 right-0 w-full flex justify-between items-center bg-white"
+  class="fixed top-0 left-0 right-0 w-full flex justify-between items-center bg-white h-14 px-4"
 >
-  <div id="hamMenu" class="inline-block p-2 cursor-pointer text-4xl">
-    &#9776;
-  </div>
-  <label for="my-modal-3">
+  <button
+    class="flex justify-center items-center cursor-pointer bg-primary text-white rounded-full w-8 h-8"
+    data-bs-toggle="offcanvas"
+    data-bs-target="#userSideBar"
+    aria-controls="userSideBar"
+  >
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      class="h-10 w-10"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="w-5 h-5"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+      />
+    </svg>
+  </button>
+  <button type="button" data-bs-toggle="modal" data-bs-target="#searchEvents">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-6 w-6"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
@@ -32,275 +44,345 @@ current: index
         d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
       />
     </svg>
-  </label>
-</div>
-<div>
-  <h2 class="text-primary mb-2">我是 tailwind 的 text-primary</h2>
-  <h2 class="text-secondary mb-2">我是 tailwind 的 text-secondary</h2>
-  <h2 class="bg-primary mb-2">我是 tailwind 的 bg-primary</h2>
-  <h2 class="bg-secondary mb-2">我是 tailwind 的 bg-secondary</h2>
-  <button class="btn btn-secondary mb-2">
-    我是 daisyUI 按鈕 btn-secondary
   </button>
 </div>
 
-<input type="checkbox" id="my-modal-3" class="modal-toggle" />
+<!-- searching Modal start -->
+<div
+  class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+  id="searchEvents"
+  tabindex="-1"
+  aria-labelledby="searchEvents"
+  aria-modal="true"
+  role="dialog"
+>
+  <div
+    class="modal-dialog modal-dialog-centered relative w-auto pointer-events-none"
+  >
+    <div
+      class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-primary bg-clip-padding outline-none text-current"
+    >
+      <div
+        class="modal-header flex flex-shrink-0 items-center justify-between p-4"
+      >
+        <h5 class="flex items-center text-lg text-white" id="searchEventsLabel">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+          <span>事件查詢</span>
+        </h5>
 
-<div class="modal">
-  <div class="modal-box relative bg-primary">
-    <div class="flex justify-between items-center mb-4 text-white">
-      <p class="flex items-center text-lg">
+        <button
+          type="button"
+          class="text-white"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body relative p-4">
+        <form action="">
+          <div class="mb-4">
+            <label for="input01" class="block text-xs text-white mb-2"
+              >設備名稱</label
+            >
+            <input id="input01" type="text" class="form-control" />
+          </div>
+          <div class="">
+            <p class="text-xs text-white mb-2">設備類別</p>
+            <div class="custom-select w-full">
+              <select>
+                <option value="0">全部</option>
+                <option value="1">門禁讀卡機</option>
+                <option value="2">中門禁卡機</option>
+                <option value="3">小門禁卡機</option>
+                <option value="4">小小門禁卡機</option>
+                <option value="5">超級小小門禁卡機</option>
+                <option value="6">門禁讀卡機</option>
+                <option value="7">中門禁卡機</option>
+                <option value="8">小門禁卡機</option>
+                <option value="9">小小門禁卡機</option>
+                <option value="10">超級小小門禁卡機</option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div
+        class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-center p-4"
+      >
+        <button
+          type="button"
+          class="nline-block px-6 py-2.5 bg-secondary text-primary font-medium text-xs leading-tight rounded mr-1"
+          data-bs-dismiss="modal"
+        >
+          取消
+        </button>
+        <button
+          type="button"
+          class="inline-block px-6 py-2.5 bg-secondary text-primary font-medium text-xs leading-tight rounded ml-1"
+        >
+          查詢
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- searching Modal end -->
+
+<!-- user sidebar start -->
+<div
+  class="offcanvas offcanvas-start fixed bottom-0 flex flex-col max-w-full bg-white invisible bg-clip-padding shadow-sm outline-none transition duration-300 ease-in-out text-gray-700 top-0 left-0 border-none w-2/3 md:w-96"
+  tabindex="-1"
+  id="userSideBar"
+  aria-labelledby="offcanvasExampleLabel"
+>
+  <div class="offcanvas-header flex items-center justify-between p-4">
+    <h5 class="flex items-center" id="offcanvasExampleLabel">
+      <div
+        class="bg-primary text-white rounded-full w-8 h-8 flex justify-center items-center mr-2"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6"
           fill="none"
           viewBox="0 0 24 24"
+          stroke-width="1.5"
           stroke="currentColor"
+          class="w-5 h-5"
         >
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
-            stroke-width="2"
-            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
           />
         </svg>
-        <span>事件查詢</span>
-      </p>
-      <label for="my-modal-3" class="text-xl">✕</label>
-    </div>
-    <form action="">
-      <div class="form-control mb-4">
-        <label for="input01" class="block text-xs text-white mb-2"
-          >設備名稱</label
-        >
-        <input id="input01" type="text" />
       </div>
-      <div class="">
-        <p class="text-xs text-white mb-2">設備類別</p>
-        <div class="custom-select w-full">
-          <select>
-            <option value="0">全部</option>
-            <option value="1">門禁讀卡機</option>
-            <option value="2">中門禁卡機</option>
-            <option value="3">小門禁卡機</option>
-            <option value="4">小小門禁卡機</option>
-            <option value="5">超級小小門禁卡機</option>
-            <option value="6">門禁讀卡機</option>
-            <option value="7">中門禁卡機</option>
-            <option value="8">小門禁卡機</option>
-            <option value="9">小小門禁卡機</option>
-            <option value="10">超級小小門禁卡機</option>
-          </select>
-        </div>
-      </div>
-      <div class="flex mt-10 justify-center">
-        <button type="button" class="btn btn-sm btn-secondary mr-2">
-          取消
-        </button>
-        <button type="button" class="btn btn-sm btn-secondary">查詢</button>
-      </div>
-    </form>
+      <span>tw-element sidebar</span>
+    </h5>
+    <button
+      type="button"
+      class="btn-close box-content w-4 h-4 p-2 -my-5 -mr-2 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="offcanvas-body flex-grow p-4 overflow-y-auto">
+    <nav class="flex flex-col">
+      <a href="./sidemenu.html" class="py-2 border-b border-gray-200"
+        >關閉推播</a
+      >
+      <a href="./login.html" class="py-2 border-b border-gray-200">登出</a>
+    </nav>
   </div>
 </div>
+<!-- user sidebar end -->
 
-<div>
-  <p class="bg-purple-200 mb-4 p-4">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus praesentium
-    id rem maiores sit facere fuga animi, sapiente aperiam nulla repudiandae
-    officiis dolor deleniti blanditiis magnam, sint, minus a dignissimos. Dolor
-    doloremque ab magni tenetur? Quas labore suscipit non vero tenetur soluta a
-    magni obcaecati ducimus officia provident rerum quod quidem aspernatur
-    reiciendis, dolorem cum! Neque adipisci pariatur ipsum nulla? Debitis
-    officia ab atque in? Fugit nam ipsum optio vitae libero ad, tempora sed eum
-    eos. Dicta sapiente harum, eum quibusdam incidunt officiis beatae, quos
-    praesentium magni consequatur autem aspernatur. Repellendus consectetur
-    voluptatum sunt, aliquid veniam quam minima voluptates accusamus
-    perspiciatis enim, hic repudiandae ipsum facere, dignissimos accusantium ex
-    perferendis optio sequi distinctio quibusdam. Quos sed incidunt officiis
-    omnis corporis? Commodi dicta voluptatum neque saepe excepturi eveniet alias
-    eos dolores, molestias ipsa enim eligendi aliquam odit iure quia voluptatem
-    omnis eius voluptates minima quam explicabo illo. Voluptatem rem earum
-    deserunt? At quae nisi, culpa modi voluptatum placeat dolor, ipsam debitis
-    similique adipisci, excepturi vitae! Vitae, ab. Neque facilis omnis facere.
-    Iure aut atque magni eos odit quos illo, qui asperiores. Dolorum sit atque,
-    inventore blanditiis amet magni perspiciatis odio consequatur nostrum esse
-    incidunt facilis sunt. Placeat ut facere vel assumenda explicabo dolorum
-    dolor animi quae delectus pariatur, nulla rem magni! Ratione quae neque
-    recusandae hic illo laborum temporibus voluptatum maxime! Officiis beatae
-    nisi fugit veritatis perferendis dolore aliquid repudiandae sequi, vero
-    modi, numquam autem doloremque fugiat mollitia? Qui, nisi laborum.
-    Repellendus obcaecati, consequuntur aliquid corrupti laboriosam dolorum?
-    Vitae sunt, praesentium, recusandae dolorum a repellat laborum eveniet et
-    perferendis perspiciatis ut tenetur id doloribus eos, dicta exercitationem
-    commodi! Eveniet, sint incidunt! Eius odio distinctio voluptate labore error
-    possimus quasi laudantium sed. Provident dolores cupiditate illum, commodi
-    at pariatur dolorum sunt esse sint architecto nisi dolorem rem optio,
-    voluptas similique iure sed. Corrupti quam provident recusandae sequi ab
-    eos, nihil delectus asperiores. Quia reiciendis iure odio voluptatem id non
-    iusto at! Sunt placeat illum numquam, quis explicabo obcaecati alias soluta
-    culpa deleniti. In dolorum ex voluptate provident perferendis porro unde
-    dignissimos distinctio voluptas ipsa incidunt, odio id laboriosam expedita
-    impedit! Corrupti veniam quisquam tempore voluptate, consequatur delectus
-    dolor cumque fugit facere non? Neque ut libero eligendi veritatis numquam
-    modi molestiae. Cum, asperiores similique, culpa qui quam illo rerum iure
-    aliquam unde optio, debitis praesentium soluta. Maiores dolor debitis
-    doloribus quasi, libero dignissimos. Numquam, veniam? Aliquam praesentium
-    voluptate nam laborum officia, ad possimus reprehenderit eum at vero rerum
-    eius id, iusto illo sequi ratione, libero aliquid debitis molestias aperiam
-    quo minima. Velit, non! Alias optio non distinctio dolore vero aut nemo,
-    explicabo doloribus a quo voluptatem possimus! Deserunt pariatur dolore
-    voluptatibus dignissimos rerum accusamus laborum asperiores. Iure accusamus
-    autem illum! Quo, nam nisi? Inventore eius vel dolorum porro illo eos
-    corrupti sunt nostrum odio nesciunt similique totam voluptatum autem, earum
-    quo placeat atque, quam dignissimos commodi ad maxime quae libero ipsam.
-    Eveniet, inventore. Et voluptate accusantium dolores cum officiis aut,
-    aspernatur nobis unde ad omnis itaque a voluptatibus vel illo maiores odio.
-    Eos ullam pariatur sequi soluta fuga nesciunt voluptatem commodi dolorem
-    magni. Facere excepturi sunt est quos quod qui soluta reiciendis consectetur
-    pariatur, atque totam et non mollitia, in quas quisquam error quia tempora
-    eius esse? Tempora ea voluptas consequuntur voluptatum sapiente? Totam
-    quibusdam ab animi eius ipsum aspernatur nulla beatae, aut nesciunt maiores
-    reprehenderit repudiandae necessitatibus debitis repellat maxime culpa ipsam
-    praesentium id excepturi repellendus sint eos voluptate! Nobis, et
-    recusandae. Minima maiores aliquam consequuntur omnis recusandae quo
-    asperiores, sit exercitationem distinctio temporibus pariatur odio officia
-    praesentium beatae at tempore quia voluptate, nihil blanditiis reprehenderit
-    quisquam veritatis? Officiis sint voluptatibus dicta! Magnam, id libero
-    asperiores eaque delectus vitae nisi aliquam architecto iusto at. Natus odit
-    totam similique, qui ullam repellat ipsum neque quaerat? Earum, quasi ab
-    unde magni numquam dicta odio? Numquam voluptatum sit tempora quis laborum
-    pariatur fugiat soluta veniam eos unde rem optio veritatis assumenda ab,
-    impedit facere quo inventore, eligendi dicta deserunt nesciunt consequuntur
-    nulla cum. Quisquam, facilis. Maiores exercitationem dolore nisi,
-    necessitatibus deleniti illum, quis doloremque voluptatibus quam ea id, sit
-    voluptates voluptate. Omnis ex cum nostrum ipsa corrupti laboriosam esse
-    impedit? Amet voluptas at cumque officia. Consequuntur voluptatem explicabo
-    pariatur aut architecto alias aliquid deserunt vero quae sit a dolor nostrum
-    voluptatum, qui ipsum temporibus consequatur, delectus ducimus minus sequi
-    quia quis voluptatibus ut unde. Dolorum! Consequatur facere possimus
-    perferendis hic illo unde quasi, ullam nostrum, qui maiores veritatis
-    excepturi quibusdam recusandae alias aliquam praesentium deserunt? Ipsam
-    voluptates possimus vel. Tenetur sed nam nobis ad veniam. Veritatis rerum
-    enim quam consectetur accusamus minus mollitia voluptatum modi, voluptates
-    deserunt harum, quaerat quas ipsam commodi accusantium aliquid quibusdam non
-    distinctio, sapiente quasi? Consequuntur, quasi? Harum molestiae est
-    molestias. Eius quisquam voluptas facere eum corporis illum autem, quos
-    quaerat, dolorem obcaecati consectetur commodi aspernatur, perferendis
-    excepturi. Aperiam laudantium velit laborum? Nam voluptatem explicabo
-    nostrum optio amet earum voluptatibus laboriosam! Illum optio delectus nisi
-    nihil molestiae, odio, impedit earum sequi officiis, et laborum totam eaque
-    tenetur quisquam. Hic neque, odio sapiente non amet veniam tempora culpa
-    provident sint esse officiis! Id atque laboriosam cupiditate enim suscipit,
-    aspernatur, dignissimos voluptatum ut maiores reprehenderit tempore
-    quibusdam ex nulla commodi minus a molestiae sequi deserunt. Omnis, nobis.
-    Corrupti veritatis praesentium quas quod odit? Eveniet adipisci quaerat sed
-    ratione sint dolorum voluptatem illo excepturi, animi amet reprehenderit
-    voluptatibus dicta maxime minima consectetur quo iusto, non laboriosam vel
-    qui dolor! Sequi quis enim autem iusto.
-  </p>
-  <p class="bg-yellow-200 p-6">
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur, fugiat
-    suscipit saepe exercitationem facilis doloremque amet non sed et voluptatum.
-    Dicta repellat veniam praesentium dignissimos accusantium veritatis suscipit
-    magnam unde. Aliquid fuga asperiores, porro assumenda eius sequi
-    reprehenderit quaerat, iure sunt accusantium sapiente, et blanditiis
-    explicabo. Necessitatibus tenetur perferendis error, fuga magni perspiciatis
-    qui, consequatur, vitae doloribus voluptate molestias ipsam! Aspernatur
-    quasi modi eum fugit corrupti? Velit quo, omnis non iste praesentium aut
-    incidunt voluptatum saepe possimus sed porro odit eum eos vero modi! Libero
-    nobis obcaecati alias harum provident! Explicabo, molestias repellat. Sit
-    molestiae itaque eos dicta cupiditate quisquam suscipit neque quaerat
-    laboriosam aut delectus esse mollitia, maiores ex et saepe possimus
-    temporibus ipsa quos quod aperiam. Nostrum, eligendi! Magnam ex similique
-    sed laborum quod aperiam doloribus dolor officiis temporibus odio! Quaerat
-    animi rerum enim dolorem. Deserunt nobis voluptates explicabo animi aperiam
-    eum cupiditate voluptatibus, nulla nostrum? Maxime, nihil. Repellendus
-    ratione dolorum deserunt labore aliquam, nesciunt dolores sunt rem.
-    Provident quidem explicabo praesentium eligendi excepturi voluptatum numquam
-    repellat, quo odit molestias dolorum magnam nam, earum, quibusdam dolorem
-    voluptate dicta. Adipisci harum laborum cupiditate perspiciatis alias eius
-    voluptates fugiat nihil id. Inventore, neque. Incidunt ipsam eius quo qui,
-    illum quod voluptatem, illo voluptate totam neque, soluta reiciendis omnis
-    ipsum cumque? Libero vel incidunt rerum quibusdam delectus veritatis rem
-    voluptates ea ducimus assumenda, magnam maxime natus quaerat, autem
-    voluptatibus dolores, voluptas odio animi quam. Voluptatem vitae vel neque,
-    est iure fugiat! Laborum optio architecto harum natus tenetur porro
-    voluptatem et! Consequuntur dicta iusto dignissimos, vero exercitationem
-    accusantium harum recusandae, dolorem soluta tempore, nisi mollitia nemo quo
-    at. Error molestias necessitatibus cumque. Maiores fuga vero quasi? Non
-    doloribus laboriosam, voluptatem consectetur cum accusamus asperiores ea
-    nesciunt sapiente qui adipisci quibusdam similique in facere culpa ad quod
-    voluptates nobis vitae officiis nihil nemo. Amet et eveniet voluptatum
-    fugiat a, neque numquam dolor nesciunt id repellat cum aspernatur saepe hic
-    quasi modi officia quas placeat omnis distinctio quo. Voluptatibus, quia
-    enim. Eligendi, sint suscipit? Officiis quo magni, est magnam architecto qui
-    quasi ad, ipsa expedita hic obcaecati perferendis totam, voluptas vel unde!
-    Incidunt harum vitae, ipsam est natus dicta voluptates asperiores suscipit
-    repellat officiis! Architecto delectus id nisi sed fuga voluptatem odio quo
-    accusamus omnis sunt exercitationem, laboriosam perspiciatis, deleniti
-    dolores magni earum voluptatibus minus alias corrupti. Repellat laborum, ad
-    odio numquam libero vero! Nesciunt necessitatibus ad corrupti tempora
-    consequatur veritatis quam eveniet vero voluptatem accusantium sequi
-    reprehenderit eos suscipit voluptate fugit laudantium repudiandae, modi vel
-    delectus. Consequuntur quaerat, necessitatibus sit unde porro doloremque.
-    Adipisci reprehenderit et quo asperiores tempora ea harum suscipit voluptate
-    similique rerum vero, perferendis sed, ipsa dolorum possimus eos reiciendis
-    culpa minus quisquam nam commodi ex recusandae quia! Asperiores, amet?
-    Corrupti aperiam possimus eligendi sint necessitatibus, voluptatibus
-    architecto deleniti quisquam nulla iusto ipsum numquam natus sequi est,
-    vitae quis suscipit cum tempora nobis animi maiores recusandae veniam, porro
-    itaque! Minima. Aliquid sequi quaerat earum commodi voluptatibus, sint
-    tempore nemo? Eius temporibus repellendus laboriosam amet mollitia quo,
-    cumque esse doloribus quos distinctio commodi dolorum tempora laudantium ex
-    nam soluta? Tempore, cumque? Id libero sint laudantium quidem, qui ullam
-    earum quisquam tenetur voluptates, mollitia cum explicabo debitis, ducimus
-    officia blanditiis neque porro distinctio dolorem nemo ipsam aliquid ad.
-    Quibusdam deserunt consequatur ipsam. Sint enim quasi libero repellendus
-    perspiciatis aliquid maxime iusto, nisi atque at eos debitis in esse, natus
-    quam cumque ex, accusamus nam beatae quis ducimus repellat itaque sunt!
-    Quasi, laudantium. Impedit deserunt quis ipsa eaque vel distinctio,
-    excepturi ratione maxime blanditiis maiores quo iste id rem dolorum
-    laboriosam fuga ullam accusantium reprehenderit nostrum. Illo esse tempore
-    sequi nostrum pariatur libero!
-  </p>
+<!-- event table start -->
+<div class="mt-14">
+  <table class="w-full">
+    <thead class="bg-primary text-white sticky top-14">
+      <tr class="">
+        <th scope="col">編號</th>
+        <th scope="col">設備名稱</th>
+        <th scope="col">運轉</th>
+        <th scope="col">詳細資料</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">001</th>
+        <td>CV-1F-01大門門禁</td>
+        <td>門禁讀卡機</td>
+        <td class="text-center">
+          <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">001</th>
+        <td>CV-1F-01大門門禁</td>
+        <td>門禁讀卡機</td>
+        <td class="text-center">
+          <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">001</th>
+        <td>CV-1F-01大門門禁</td>
+        <td>門禁讀卡機</td>
+        <td class="text-center">
+          <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">001</th>
+        <td>CV-1F-01大門門禁</td>
+        <td>門禁讀卡機</td>
+        <td class="text-center">
+          <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">001</th>
+        <td>CV-1F-01大門門禁</td>
+        <td>門禁讀卡機</td>
+        <td class="text-center">
+          <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">001</th>
+        <td>CV-1F-01大門門禁</td>
+        <td>門禁讀卡機</td>
+        <td class="text-center">
+          <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">001</th>
+        <td>CV-1F-01大門門禁</td>
+        <td>門禁讀卡機</td>
+        <td class="text-center">
+          <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">001</th>
+        <td>CV-1F-01大門門禁</td>
+        <td>門禁讀卡機</td>
+        <td class="text-center">
+          <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">001</th>
+        <td>CV-1F-01大門門禁</td>
+        <td>門禁讀卡機</td>
+        <td class="text-center">
+          <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">001</th>
+        <td>CV-1F-01大門門禁</td>
+        <td>門禁讀卡機</td>
+        <td class="text-center">
+          <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">001</th>
+        <td>CV-1F-01大門門禁</td>
+        <td>門禁讀卡機</td>
+        <td class="text-center">
+          <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">001</th>
+        <td>CV-1F-01大門門禁</td>
+        <td>門禁讀卡機</td>
+        <td class="text-center">
+          <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">001</th>
+        <td>CV-1F-01大門門禁</td>
+        <td>門禁讀卡機</td>
+        <td class="text-center">
+          <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">001</th>
+        <td>CV-1F-01大門門禁</td>
+        <td>門禁讀卡機</td>
+        <td class="text-center">
+          <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">001</th>
+        <td>CV-1F-01大門門禁</td>
+        <td>門禁讀卡機</td>
+        <td class="text-center">
+          <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">001</th>
+        <td>CV-1F-01大門門禁</td>
+        <td>門禁讀卡機</td>
+        <td class="text-center">
+          <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">001</th>
+        <td>CV-1F-01大門門禁</td>
+        <td>門禁讀卡機</td>
+        <td class="text-center">
+          <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">001</th>
+        <td>CV-1F-01大門門禁</td>
+        <td>門禁讀卡機</td>
+        <td class="text-center">
+          <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">001</th>
+        <td>CV-1F-01大門門禁</td>
+        <td>門禁讀卡機</td>
+        <td class="text-center">
+          <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">001</th>
+        <td>CV-1F-01大門門禁</td>
+        <td>門禁讀卡機</td>
+        <td class="text-center">
+          <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">001</th>
+        <td>CV-1F-01大門門禁</td>
+        <td>門禁讀卡機</td>
+        <td class="text-center">
+          <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-
-<script>
-  const sideNav = document.getElementById('sideNav');
-  const hamMenu = document.getElementById('hamMenu');
-  let isNavOpen = false;
-
-  function openSideMenu(e) {
-    const body = document.body;
-    e.stopPropagation();
-    const scrollY =
-      document.documentElement.style.getPropertyValue('--scroll-y');
-    body.style.top = `-${scrollY}`;
-    body.classList.add('modal-open');
-    isNavOpen = true;
-  }
-
-  function closeSideMenu(e) {
-    const body = document.body;
-    e.stopPropagation();
-    if (e.target !== sideNav && isNavOpen) {
-      const scrollY = body.style.top;
-      body.style.position = '';
-      body.style.top = '';
-      window.scrollTo(0, parseInt(scrollY || '0') * -1);
-      body.classList.remove('modal-open');
-    }
-    isNavOpen = false;
-  }
-
-  hamMenu.addEventListener('click', openSideMenu);
-  document.addEventListener('click', closeSideMenu);
-  window.addEventListener('scroll', () => {
-    document.documentElement.style.setProperty(
-      '--scroll-y',
-      `${window.scrollY}px`
-    );
-  });
-// console.log(bodyScrollLock)
-
-</script>
+<!-- event table end  -->

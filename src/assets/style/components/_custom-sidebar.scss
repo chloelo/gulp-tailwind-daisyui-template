@@ -1,3 +1,5 @@
+
+// 備份用，沒有編譯出去，因為會與套件的樣式有衝突
 .side-nav {
   @apply w-0 h-full fixed top-0 left-0 bg-white overflow-x-hidden;
   z-index: 1;
@@ -14,8 +16,8 @@
 }
 body {
   overflow: auto;
-  &.modal-open {
-    @apply left-0 right-0 bg-purple-200;
+  &.my-modal-open {
+    @apply left-0 right-0;
     overflow: hidden;
     .side-nav {
       width: 75%;

@@ -56,7 +56,7 @@
     background-color: #ccc;
   } */
 
-  /* When the radio button is checked, add a blue background */
+  /* When the radio button is checked, add a background */
   .radio-wrapper input:checked ~ .check-mark {
     @apply bg-primary-600;
   }
@@ -81,74 +81,3 @@
   }
 }
 
-// 客製下拉
-/*the container must be positioned relative:*/
-.custom-select {
-  @apply relative;
-  select {
-    @apply hidden; /*hide original SELECT element:*/
-  }
-  &.dark {
-    .select-items {
-      @apply bg-primary text-white;
-      div {
-        &::before {
-          @apply border-white bg-primary;
-        }
-        &.same-as-selected {
-          &::before {
-            @apply bg-white;
-          }
-        }
-      }
-    }
-  }
-
-  .select-selected {
-    @apply bg-white text-primary cursor-pointer rounded select-none py-2 px-4;
-    border: 1px solid #eef1f4;
-    &::after {
-      // style the arrow inside the select element
-      @apply absolute w-0 h-0 border-primary-600 border-solid top-4 right-2.5 p-1 inline-block;
-      content: "";
-      border-width: 0 2px 2px 0;
-      transform: rotate(45deg);
-      -webkit-transform: rotate(45deg);
-    }
-
-    // point the arrow upwards when the select box is open (active)
-    &.select-arrow-active {
-      &::after {
-        top: 20px;
-        transform: rotate(-135deg);
-        -webkit-transform: rotate(-135deg);
-      }
-    }
-  }
-  .select-items {
-    // style items (options)
-    @apply bg-white absolute left-0 right-0 z-30 top-full overflow-y-auto;
-    max-height: 30vh;
-    div {
-      @apply relative py-2 pl-12 pr-4 cursor-pointer select-none;
-      border: 1px solid transparent;
-      border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-      &::before {
-        @apply bg-white top-1/2 -translate-y-1/2 absolute left-4 inline-block rounded-full;
-        content: "";
-        height: 20px;
-        width: 20px;
-        border: 3px solid #555;
-      }
-      &:hover {
-        background-color: rgba(0, 0, 0, 0.1);
-      }
-      &.same-as-selected {
-        background-color: rgba(0, 0, 0, 0.1);
-        &::before {
-          background-color: #555;
-        }
-      }
-    }
-  }
-}

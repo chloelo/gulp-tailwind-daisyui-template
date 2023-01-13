@@ -16,18 +16,16 @@
   </head>
 
   <body>
-    <!-- <header class="header">
-      這是 header
-    </header> -->
-
-    <%- contents %>
+    <main class="pb-20 px-4">
+      <%- contents %>
+    </main>
     <nav
       class="main-nav bg-secondary fixed bottom-0 left-0 right-0 text-primary"
     >
       <ul class="flex justify-around text-sm">
         <li class="flex-1">
           <a
-            href="custom-select.html"
+            href="./custom-select.html"
             class="main-nav__item <% if (current === 'nav-link01') {%>main-nav__item--active<%} %>"
           >
             <i class="fa-solid fa-house"></i>
@@ -45,29 +43,29 @@
         </li>
         <li class="flex-1">
           <a
-            href="index.html"
+            href="./index.html"
             class="main-nav__item <% if (current === 'index') {%>main-nav__item--active<%} %>"
           >
             <i class="fa-brands fa-github"></i>
-            <span class="inline-block mt-1">sidebar</span>
+            <span class="inline-block mt-1">index</span>
           </a>
         </li>
         <li class="flex-1">
           <a
-            href="sidemenu.html"
+            href="./login.html"
             class="main-nav__item <% if (current === 'nav-link04') {%>main-nav__item--active<%} %>"
           >
             <i class="fa-solid fa-music"></i>
-            <span class="inline-block mt-1">daisyUI sideBar</span>
+            <span class="inline-block mt-1">login</span>
           </a>
         </li>
         <li class="flex-1">
           <a
-            href="#"
+            href="./form-items.html"
             class="main-nav__item <% if (current === 'nav-link05') {%>main-nav__item--active<%} %>"
           >
             <i class="fa-solid fa-heart"></i>
-            <span class="inline-block mt-1">歷年用電</span>
+            <span class="inline-block mt-1">form</span>
           </a>
         </li>
       </ul>

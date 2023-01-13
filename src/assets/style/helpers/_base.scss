@@ -9,7 +9,7 @@ body {
 table {
   th,
   td {
-    @apply p-2;
+    @apply p-2 text-sm;
   }
 }
 input[type="text"] {
@@ -20,6 +20,16 @@ input[type="text"] {
     box-shadow: none;
   }
 }
+.form-control {
+  @apply block w-full px-3 py-1.5 text-base font-normal text-primary bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-primary focus:bg-white focus:outline-none;
+  &:focus {
+    @apply focus:border-gray-400 ;
+    box-shadow: 0 0 0 1px #eee;
+  }
+}
+// .modal-dialog {
+//   @apply m-4;
+// }
 // .btn-secondary {
 //   @apply bg-secondary text-primary border-0 hover:opacity-75 hover:bg-secondary;
 // }

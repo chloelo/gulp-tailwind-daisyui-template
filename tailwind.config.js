@@ -1,5 +1,6 @@
 module.exports = {
-  content: ['./src/**/*.{html,ejs,scss}'],
+  // node_modules/tw-elements/dist/js/index.min.js
+  content: ['./src/**/*.{html,ejs,scss}', './node_modules/tw-elements/dist/js/**/*.js'],
   theme: {
     extend: {
       colors: {
@@ -27,25 +28,24 @@ module.exports = {
       },
     },
   },
-  daisyui: {
-    themes: [
-      {
-        light: {
-          ...require('daisyui/src/colors/themes')['[data-theme=light]'],
-          primary: '#667080',
-          secondary: '#EEF1F4',
-          'primary-focus': '#555',
-          "secondary-content": "#667080",
-        },
-      },
-    ],
-  },
+  // daisyui: {
+  //   themes: [
+  //     {
+  //       light: {
+  //         ...require('daisyui/src/colors/themes')['[data-theme=light]'],
+  //         primary: '#667080',
+  //         secondary: '#EEF1F4',
+  //         'primary-focus': '#555',
+  //         "secondary-content": "#667080",
+  //       },
+  //     },
+  //   ],
+  // },
   plugins: [
-    require('daisyui'),
-    require('@tailwindcss/forms'),
+    require('tw-elements/dist/plugin'),
+    require('@tailwindcss/forms')({
+      strategy: 'class',
+    }),
     require('@tailwindcss/typography'),
   ],
-  // daisyui: {
-
-  // }
 }

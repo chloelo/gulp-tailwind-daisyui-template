@@ -1,12 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>登入</title>
-</head>
-<body>
-  
-</body>
-</html>
+---
+title: 登入
+layout: ./src/layout-clean.ejs
+engine: ejs
+current: nav-link04
+---
+
+<div class="block p-4 bg-white">
+  <div class="text-primary-600 flex flex-col justify-center items-center mb-4">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="w-1/2 h-auto"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+      />
+    </svg>
+    <h2 class="text-4xl">永恆之藝</h2>
+  </div>
+  <form>
+    <div class="form-group mb-6">
+      <input
+        type="email"
+        class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white  focus:outline-none"
+        id="exampleInput125"
+        placeholder="請輸入帳號"
+      />
+    </div>
+    <div class="form-group mb-6">
+      <input
+        type="password"
+        class="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white  focus:outline-none"
+        id="exampleInput126"
+        placeholder="請輸入密碼"
+      />
+    </div>
+    <div class="form-group mb-6">
+      <input
+        type="password"
+        class="form-control "
+        id="exampleInput127"
+        placeholder="請輸入驗證碼"
+      />
+    </div>
+
+    <button
+      id="btnLogin"
+      type="submit"
+      class="w-full px-6 py-2.5 bg-primary text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:shadow-lg  focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out"
+    >
+      登入
+    </button>
+  </form>
+</div>
+<script>
+  const btnLogin = document.querySelector('#btnLogin');
+  btnLogin.addEventListener('click', function (e) {
+    e.preventDefault()
+    window.location.href = 'index.html';
+  });
+</script>
