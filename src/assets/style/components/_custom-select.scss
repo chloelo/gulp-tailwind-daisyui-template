@@ -2,6 +2,27 @@
 /*the container must be positioned relative:*/
 .custom-select {
   @apply relative;
+  &.inModal {
+    overflow-y: auto;
+    .overlay:has(~ .select-arrow-active) {
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      width: 100%;
+      height: 100%;
+    }
+    .select-items {
+      height: auto;
+      max-height: 80dvh;
+      width: calc(100% - 2rem);
+      overflow-y: auto;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
   select {
     @apply hidden; /*hide original SELECT element:*/
   }
@@ -50,7 +71,7 @@
     transform: scale(1, 1);
     transition: all 0.3s;
     transform-origin: top left;
-    &.hide{
+    &.hide {
       transform: scale(1, 0);
       opacity: 0;
     }
@@ -75,6 +96,5 @@
         }
       }
     }
-   
   }
 }
